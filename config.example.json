@@ -1,0 +1,9 @@
+{
+  "clean_authorities": "C:/RESTRICTED/QData_Authorities.xlsx",
+  "raw_authorities": "C:/RESTRICTED/Authority survey_Truong Tho Living Lab (Responses).xlsx",
+  "legacy_tables": "C:/AUTHORIZED/PAPER5_TABLES",
+  "ward_geojson": "C:/PUBLIC/ThuDucCity_ward.geojson",
+  "vietnam_geojson": "C:/PUBLIC/vietnam_adm0.geojson",
+  "poi_gpkg": "C:/PUBLIC/osm_2026_pois.gpkg",
+  "output_dir": "outputs"
+}

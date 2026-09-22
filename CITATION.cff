@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+title: "ttll-p5: code for administrative rescaling and local service exposure"
+message: "If you use this software, please cite the archived release."
+type: software
+authors:
+  - family-names: "Lê"
+    given-names: "Ngọc Hiếu"
+    orcid: "https://orcid.org/0000-0002-1133-1433"
+    affiliation: >-
+      Faculty of Information Technology 2, Posts and Telecommunications
+      Institute of Technology, Ho Chi Minh City, Viet Nam; University of
+      Health Sciences, Viet Nam National University Ho Chi Minh City, Viet Nam
+    email: "lnhieu@ptit.edu.vn"
+repository-code: "https://github.com/occbuu/ttll-p5"
+abstract: >-
+  Reproduction code for a source audit, jurisdictional-exposure analysis,
+  OpenStreetMap fitness-for-purpose diagnostics, and figure generation for
+  the former Thu Duc City. The repository contains no manuscript or survey
+  microdata.
+keywords:
+  - administrative rescaling
+  - local government
+  - OpenStreetMap
+  - GHS-POP
+  - Ho Chi Minh City
+license: MIT
+version: "1.0.0"
