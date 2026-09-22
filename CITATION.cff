@@ -12,6 +12,8 @@ authors:
       Health Sciences, Viet Nam National University Ho Chi Minh City, Viet Nam
     email: "lnhieu@ptit.edu.vn"
 repository-code: "https://github.com/occbuu/ttll-p5"
+doi: "10.5281/zenodo.22885665"
+date-released: "2026-09-22"
 abstract: >-
   Reproduction code for a source audit, jurisdictional-exposure analysis,
   OpenStreetMap fitness-for-purpose diagnostics, and figure generation for

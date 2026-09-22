@@ -1,5 +1,7 @@
 # ttll-p5
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22885665.svg)](https://doi.org/10.5281/zenodo.22885665)
+
 Reproduction code for the administrative-rescaling and jurisdictional-exposure analysis in the former Thu Duc City, Ho Chi Minh City.
 
 This repository contains **code and documentation only**. It does not contain the manuscript, survey microdata, interview transcripts, names, contact details, exact addresses, identifiable job information, or the invalid post-reform interview workbook.
@@ -54,4 +56,4 @@ OpenStreetMap-derived inputs remain subject to ODbL attribution requirements: ©
 
 ## Archive and DOI
 
-After pushing the repository to GitHub, follow `HOW_TO_DOI.md` to create an immutable Zenodo release. Insert the final repository URL and DOI into the manuscript only after both resolve publicly.
+The public repository is available at <https://github.com/occbuu/ttll-p5>. Release `v1.0.0` is archived on Zenodo: <https://doi.org/10.5281/zenodo.22885665>.
