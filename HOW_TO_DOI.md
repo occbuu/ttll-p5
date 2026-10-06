@@ -1,11 +1,9 @@
-# Create a citable DOI
+# Archiving the revised code
 
-Completed for release `v1.0.0`: <https://doi.org/10.5281/zenodo.22885665>.
+The DOI `10.5281/zenodo.22885665` is specific to historical release `v1.0.0` and must not be cited as the archive of the revised 625-scenario analysis.
 
-1. Create the GitHub repository `occbuu/ttll-p5` and push this folder.
-2. Confirm that no survey workbook, row-level extract, manuscript, Word file or PDF has been committed.
-3. Connect the repository to Zenodo and enable archiving.
-4. Create a GitHub release such as `v1.0.0`.
-5. Wait for Zenodo to mint the version DOI.
-6. Add the DOI badge to `README.md` and update the DOI in the manuscript.
-7. Do not cite a placeholder DOI or a GitHub URL that has not been made public.
+1. Run the two commands in `README.md` with the article's aggregate inputs. Confirm the expected sensitivity results and all four figures.
+2. Run `python verify_public_repo.py` and review `git diff --cached` for anything beyond the two approved ward-level aggregate CSVs, manuscripts and personal information.
+3. Commit and push the revised code, then create a **new versioned GitHub release** (suggested `v2.0.0`).
+4. Confirm Zenodo created a *new version DOI* for that release. Record the DOI in `CITATION.cff`, `.zenodo.json`, the README and the paper's data/code statement. Do not reuse the `v1.0.0` version DOI.
+5. If Zenodo is unavailable, cite the GitHub release tag and its commit SHA in the paper, with the repository URL and access date.

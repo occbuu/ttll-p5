@@ -1,20 +1,12 @@
 {
-  "title": "ttll-p5: code for administrative rescaling and local service exposure",
+  "title": "ttll-p5: code for ward rescaling and jurisdictional exposure",
   "upload_type": "software",
-  "creators": [
-    {
-      "name": "Lê, Ngọc Hiếu",
-      "affiliation": "Posts and Telecommunications Institute of Technology; University of Health Sciences, VNU-HCM",
-      "orcid": "0000-0002-1133-1433"
-    }
-  ],
+  "creators": [{"name": "Lê, Ngọc Hiếu", "affiliation": "Posts and Telecommunications Institute of Technology; University of Health Sciences, VNU-HCM", "orcid": "0000-0002-1133-1433"}],
   "keywords": ["administrative rescaling", "local government", "OpenStreetMap", "GHS-POP", "Ho Chi Minh City"],
   "license": "mit-license",
   "access_right": "open",
   "language": "eng",
-  "version": "1.0.0",
-  "related_identifiers": [
-    {"identifier": "https://github.com/occbuu/ttll-p5", "relation": "isSupplementTo", "scheme": "url"}
-  ],
-  "description": "<p>Reproduction code for source auditing, jurisdictional-exposure analysis, OSM fitness-for-purpose diagnostics, and figure generation. This software archive contains no manuscript, survey microdata, interview transcript, or personal information.</p>"
+  "version": "2.0.0-dev",
+  "related_identifiers": [{"identifier": "https://github.com/occbuu/ttll-p5", "relation": "isSupplementTo", "scheme": "url"}],
+  "description": "<p>Code for 625 split-ward sensitivity scenarios and Figures 1–4. No manuscript or person-level data are bundled.</p>"
 }

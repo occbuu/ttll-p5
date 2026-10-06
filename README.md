@@ -1,59 +1,43 @@
 # ttll-p5
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22885665.svg)](https://doi.org/10.5281/zenodo.22885665)
+Code and ward-level aggregate inputs for the revised study of administrative rescaling and jurisdictional exposure in the former Thu Duc City, Ho Chi Minh City. This branch reproduces the 625 split-allocation scenarios and Figures 1–4 of the revised paper. The historical survey-based workflow remains available in the immutable `v1.0.0` tag; survey data are not used in the revised paper.
 
-Reproduction code for the administrative-rescaling and jurisdictional-exposure analysis in the former Thu Duc City, Ho Chi Minh City.
+## Scope and interpretation
 
-This repository contains **code and documentation only**. It does not contain the manuscript, survey microdata, interview transcripts, names, contact details, exact addresses, identifiable job information, or the invalid post-reform interview workbook.
+The inputs represent 34 former wards. Twelve legal successor wards are assembled from the ward-allocation crosswalk in `sensitivity.py`. Four former wards are assigned to two successors. Their true fractional allocation is unavailable, so the code varies each share over 0, 0.25, 0.5, 0.75 and 1: **625 deterministic scenarios**, including equal shares. The output ranges are *scenario envelopes, not confidence intervals*. OSM categories represent mapped stock and include wards with zero mapped features. This analysis measures spatial exposure; it does not estimate staffing, service quality or causal reform effects.
 
-## What the code does
+## Inputs
 
-`analyse_paper5.py`:
+The two study aggregate tables are in `data/`. They contain former-ward totals, with no person-level records. Do not add survey, interview or person-level files. Required CSV schemas:
 
-1. links the restricted 23-record public-sector subset to the original survey export by timestamp;
-2. verifies selected fields character-for-character;
-3. produces aggregate position and neighbourhood-assessment tables;
-4. calculates jurisdictional-exposure ratios for the 34 former and 12 successor wards;
-5. performs temporal and spatial fitness-for-purpose diagnostics for OpenStreetMap;
-6. generates two maps and five charts/diagrams.
+| Argument | Columns | Meaning |
+| --- | --- | --- |
+| `--wards-before` | `Ward,Pop_2025,area_km2` | One row for each of 34 former wards; modelled 2025 population and area in km² |
+| `--osm-counts` | `date,ward,metric,value` | Historical OSM ward-category totals; `date` in ISO format; absent ward-category rows are treated as zero |
 
-The script does not estimate causal reform effects or treat OSM as an authoritative facility census.
+The OSM metrics used are `shop`, `food_outlet`, `religious_premises`, `education`, `health`, `public_space`, `marketplace`, and `road_km`. The latest `date` supplies the manuscript's stock comparison. Figure 1 additionally needs a 34-feature former-ward GeoJSON with a `Ten` name field and a valid CRS; it is optional because the ward geometry is not redistributed into invented successor polygons.
 
-## Required inputs
+## Run
 
-The repository does not distribute these inputs. Authorized users must supply paths to:
-
-- a cleaned authority survey workbook;
-- the original authority survey export;
-- the public/derived aggregate CSV tables used by the study;
-- former Thu Duc ward boundaries in GeoJSON;
-- a Vietnam outline GeoJSON for the locator inset;
-- an EPSG:4326 OpenStreetMap POI GeoPackage;
-- original public spatial sources obtained under their respective licences.
-
-## Command-line use
+Python 3.10 or newer:
 
 ```bash
-python analyse_paper5.py \
-  --clean-authorities /restricted/QData_Authorities.xlsx \
-  --raw-authorities "/restricted/Authority survey_Truong Tho Living Lab (Responses).xlsx" \
-  --legacy-tables /public-or-authorized/tables \
-  --ward-geojson /public/ThuDucCity_ward.geojson \
-  --vietnam-geojson /public/vietnam_adm0.geojson \
-  --poi-gpkg /public/osm_2026_pois.gpkg \
-  --output-dir outputs
+python -m pip install -r requirements.txt
+python sensitivity.py --wards-before data/table13b_wards_before.csv \
+  --osm-counts data/osm_ward_year_counts.csv --output-dir outputs
+python build_figures.py --wards-before data/table13b_wards_before.csv \
+  --osm-counts data/osm_ward_year_counts.csv \
+  --results-json outputs/sensitivity_results.json \
+  --ward-geojson /path/to/ThuDucCity_ward.geojson --output-dir outputs/figures
+python verify_public_repo.py
 ```
 
-The same workflow is available in `reproduce_paper5.ipynb`.
+Omit `--ward-geojson` to build Figures 2–4 without GeoPandas. `geopandas>=0.14` is only needed for Figure 1. Output includes `split_allocation_scenarios.csv`, `sensitivity_results.json`, PDF/PNG figures and `Figure4_zero_counts.csv`; `outputs/` is ignored by Git.
 
-## Confidentiality
+For the aggregate input tables used in the revised manuscript, expected checks are 625 scenarios, population median ratio **2.403–2.940**, area ratio **3.485–4.294**, and equal-share ratios **2.594** and **4.085**, respectively. The exact numbers depend on the cited 2025 modelled population and OSM snapshot.
 
-The broader Truong Tho Independent Fieldwork Campaign 2023 involved residents, business owners, local experts and public-sector practitioners. Raw participant-level data are restricted because participants were assured confidentiality. Do not commit survey workbooks or any row-level extracts to this repository.
+## Sources, rights and citation
 
-## Open-data attribution
+The manuscript cites the legal ward allocations, GHS-POP R2023A (2025, 100 m) and OpenStreetMap sources. The OSM count table is derived from OSM and distributed under the [Open Database License](https://www.openstreetmap.org/copyright/en): © OpenStreetMap contributors. The population aggregates derive from European Commission JRC GHSL, which [permits reuse with source acknowledgment](https://ghsl.jrc.ec.europa.eu/documents/GHSL_data_access.pdf). The MIT licence covers repository code only. The repository contains no manuscripts, survey microdata, interviews, addresses or restricted workbooks. See `data/README.md` for table provenance and limits.
 
-OpenStreetMap-derived inputs remain subject to ODbL attribution requirements: © OpenStreetMap contributors. GHS-POP and other external inputs retain their original licences. Users are responsible for obtaining and documenting source versions.
-
-## Archive and DOI
-
-The public repository is available at <https://github.com/occbuu/ttll-p5>. Release `v1.0.0` is archived on Zenodo: <https://doi.org/10.5281/zenodo.22885665>.
+Repository: <https://github.com/occbuu/ttll-p5>. Cite the **new release or exact commit** once published. The Zenodo DOI <https://doi.org/10.5281/zenodo.22885665> belongs only to historical `v1.0.0`; it does **not** archive this revised workflow. See `HOW_TO_DOI.md` for release steps.

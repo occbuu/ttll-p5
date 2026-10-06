@@ -10,6 +10,9 @@ qa/
 *.xlsx
 *.xls
 *.csv
+!data/
+!data/table13b_wards_before.csv
+!data/osm_ward_year_counts.csv
 *.gpkg
 *.geojson
 *.shp

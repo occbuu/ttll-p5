@@ -1,0 +1,6 @@
+# Aggregate input tables
+
+- `table13b_wards_before.csv`: 34 former-ward modelled population totals for 2025 from **GHS-POP R2023A**, clipped to the project's former-ward polygons, plus polygon areas in km². Population is modelled, not a register or census. Source: European Commission Joint Research Centre, Global Human Settlement Layer; reuse requires acknowledgment. See [GHSL data access](https://ghsl.jrc.ec.europa.eu/documents/GHSL_data_access.pdf).
+- `osm_ward_year_counts.csv`: counts and lengths by former ward, OSM category and snapshot through **2026-08-18**. Derived from OpenStreetMap historical extracts; © OpenStreetMap contributors. The derived data are shared under the [Open Database License (ODbL)](https://www.openstreetmap.org/copyright/en). Missing category rows represent zero mapped features for a ward; they do not establish absence in the real world.
+
+These files contain ward-level aggregate values only. Neither includes survey responses, participant identifiers, addresses, feature coordinates or individual OSM objects. The source boundary GeoJSON and raw raster/OSM extracts are not bundled. The tables permit exact reproduction of the article's scenario results and Figures 2–4. Figure 1 needs the former-ward GeoJSON described in the main README.

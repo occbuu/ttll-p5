@@ -1,6 +1,6 @@
 cff-version: 1.2.0
-title: "ttll-p5: code for administrative rescaling and local service exposure"
-message: "If you use this software, please cite the archived release."
+title: "ttll-p5: code for ward rescaling and jurisdictional exposure"
+message: "Cite the revised release or exact commit of this repository; the v1.0.0 DOI covers only the historical workflow."
 type: software
 authors:
   - family-names: "Lê"
@@ -12,13 +12,9 @@ authors:
       Health Sciences, Viet Nam National University Ho Chi Minh City, Viet Nam
     email: "lnhieu@ptit.edu.vn"
 repository-code: "https://github.com/occbuu/ttll-p5"
-doi: "10.5281/zenodo.22885665"
-date-released: "2026-09-22"
 abstract: >-
-  Reproduction code for a source audit, jurisdictional-exposure analysis,
-  OpenStreetMap fitness-for-purpose diagnostics, and figure generation for
-  the former Thu Duc City. The repository contains no manuscript or survey
-  microdata.
+  Code for a 625-scenario split-ward sensitivity analysis and four article
+  figures. The repository contains no manuscript or person-level data.
 keywords:
   - administrative rescaling
   - local government
@@ -26,4 +22,4 @@ keywords:
   - GHS-POP
   - Ho Chi Minh City
 license: MIT
-version: "1.0.0"
+version: "2.0.0-dev"
