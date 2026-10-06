@@ -99,18 +99,18 @@ def make_framework() -> None:
     ax.set_xlim(0, 10.6); ax.set_ylim(0, 3.8); ax.axis("off")
     boxes = [
         (0.2, "1  LEGAL MANDATE", "Who has authority?\nLaw and functions", "Observed", "#dcebf5", "#1d4f70"),
-        (3.62, "2  EXPOSURE", "What is assigned?\nPeople, area, objects", "Estimated", "#dbeee9", "#16675a"),
-        (7.04, "3  CAPACITY", "Can it act?\nStaff, records, routines", "Plans, not outcomes", "#f5e7d9", "#8d4d1a"),
+        (3.72, "2  EXPOSURE", "What is assigned?\nPeople, area, objects", "Estimated", "#dbeee9", "#16675a"),
+        (7.24, "3  CAPACITY", "Can it act?\nStaff, records, routines", "Plans, not outcomes", "#f5e7d9", "#8d4d1a"),
     ]
     for x, head, body, status, fill, edge in boxes:
-        ax.add_patch(FancyBboxPatch((x, 1.0), 3.15, 2.05, boxstyle="round,pad=.12,rounding_size=.08",
+        ax.add_patch(FancyBboxPatch((x, 1.0), 3.05, 2.05, boxstyle="round,pad=.08,rounding_size=.08",
                                     linewidth=1.5, edgecolor=edge, facecolor=fill))
         ax.text(x+.18, 2.7, head, fontsize=13, weight="bold", color=edge, va="top")
         ax.text(x+.18, 2.25, body, fontsize=13.5, color="#182333", va="top", linespacing=1.4)
         ax.text(x+.18, 1.2, status.upper(), fontsize=11, weight="bold", color=edge)
-    for x in (3.38, 6.80):
-        ax.add_patch(FancyArrowPatch((x, 2.05), (x+.22, 2.05), arrowstyle="-|>", mutation_scale=13,
-                                     linewidth=1.5, color="#677584"))
+    for x in (3.33, 6.85):
+        ax.add_patch(FancyArrowPatch((x, 2.05), (x+.32, 2.05), arrowstyle="-|>", mutation_scale=22,
+                                     linewidth=2.2, color="#536473", zorder=6))
     ax.text(5.3, 3.5, "A sequential audit of administrative rescaling", ha="center", fontsize=17, weight="bold")
     ax.text(5.3, .45, "Legal assignment and spatial exposure do not identify service quality or reform effects.",
             ha="center", fontsize=11, color="#384656")

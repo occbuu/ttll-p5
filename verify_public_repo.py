@@ -9,7 +9,7 @@ forbidden_suffixes = {'.docx', '.pdf', '.tex', '.xlsx', '.xls', '.csv', '.gpkg',
 allowed_csv = {
     'data/table13b_wards_before.csv': {'Ward', 'Pop_2025', 'area_km2'},
     'data/osm_ward_year_counts.csv': {'date', 'year', 'snapshot', 'ward', 'metric', 'value'},
-    'data/successor_proposal_2025.csv': {'ward', 'area_km2', 'proposal_population', 'proposed_staff'},
+    'data/successor_proposal_2025.csv': {'ward', 'area_km2', 'proposal_population', 'proposed_staff', 'city_reassigned', 'inherited_officials', 'inherited_civil_servants'},
 }
 listed = subprocess.check_output(['git', 'ls-files', '--cached', '--others', '--exclude-standard', '-z'], cwd=ROOT)
 paths = [ROOT / p.decode('utf-8') for p in listed.split(b'\0') if p]
