@@ -8,5 +8,5 @@
   "language": "eng",
   "version": "2.0.0-dev",
   "related_identifiers": [{"identifier": "https://github.com/occbuu/ttll-p5", "relation": "isSupplementTo", "scheme": "url"}],
-  "description": "<p>Code for 625 split-ward sensitivity scenarios and Figures 1–4. No manuscript or person-level data are bundled.</p>"
+  "description": "<p>Code and aggregate inputs for twelve successor-ward planning profiles, 625 split-ward sensitivity scenarios and Figures 1–5. Proposed positions are not realised staffing. No manuscript or person-level data are bundled.</p>"
 }

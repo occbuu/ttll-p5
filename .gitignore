@@ -13,6 +13,7 @@ qa/
 !data/
 !data/table13b_wards_before.csv
 !data/osm_ward_year_counts.csv
+!data/successor_proposal_2025.csv
 *.gpkg
 *.geojson
 *.shp

@@ -13,8 +13,10 @@ authors:
     email: "lnhieu@ptit.edu.vn"
 repository-code: "https://github.com/occbuu/ttll-p5"
 abstract: >-
-  Code for a 625-scenario split-ward sensitivity analysis and four article
-  figures. The repository contains no manuscript or person-level data.
+  Code and aggregate inputs for twelve successor-ward planning profiles,
+  a 625-scenario split-ward sensitivity analysis and five article figures.
+  Proposed positions are not realised staffing. The repository contains no
+  manuscript or person-level data.
 keywords:
   - administrative rescaling
   - local government

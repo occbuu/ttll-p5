@@ -32,7 +32,7 @@ def save(fig, stem: str) -> None:
     plt.close(fig)
 
 
-def make_map(ward_geojson: Path) -> None:
+def make_map(ward_geojson: Path, locator_geojson: Path | None = None) -> None:
     import geopandas as gpd
     geo = gpd.read_file(ward_geojson).to_crs(4326)
     dest = {}
@@ -67,10 +67,30 @@ def make_map(ward_geojson: Path) -> None:
     handles.append(Patch(facecolor="#eeeeee", hatch="////", edgecolor="#777777", label="Split former ward"))
     ax.legend(handles=handles, title="Legal successor assignment", frameon=False,
               loc="lower left", bbox_to_anchor=(1.01, .01), ncol=1, fontsize=10)
-    ax.set_title("Former Thu Duc wards assigned to 2025 successors", loc="left", fontsize=16, weight="bold", pad=12)
+    ax.set_title("Thu Duc ward assignments, 2025", loc="left", fontsize=16, weight="bold", pad=12)
     ax.set_xlabel("Longitude"); ax.set_ylabel("Latitude")
     ax.set_aspect("equal")
     ax.grid(alpha=.12)
+    # Geodesic 5 km scale at the map's southern edge (geographic CRS).
+    from pyproj import Geod
+    west, south, east, north = geo.total_bounds
+    x0 = west + .04 * (east - west)
+    y0 = south + .035 * (north - south)
+    x1, _, _ = Geod(ellps="WGS84").fwd(x0, y0, 90, 5000)
+    ax.plot([x0, x1], [y0, y0], color="#101820", lw=3, solid_capstyle="butt", zorder=10)
+    ax.plot([x0, x0], [y0-.003, y0+.003], color="#101820", lw=1.5, zorder=10)
+    ax.plot([x1, x1], [y0-.003, y0+.003], color="#101820", lw=1.5, zorder=10)
+    ax.text((x0+x1)/2, y0+.005, "5 km", ha="center", va="bottom", fontsize=9,
+            weight="bold", color="#101820")
+    if locator_geojson:
+        country = gpd.read_file(locator_geojson).to_crs(4326)
+        inset = fig.add_axes([.78, .73, .12, .17])
+        country.plot(ax=inset, facecolor="#e4e8ec", edgecolor="#677584", linewidth=.55)
+        inset.scatter([geo.geometry.union_all().centroid.x], [geo.geometry.union_all().centroid.y],
+                      s=34, color="#b42318", zorder=5)
+        inset.set_xlim(101, 111); inset.set_ylim(8, 24)
+        inset.set_aspect("equal"); inset.set_xticks([]); inset.set_yticks([])
+        inset.set_title("Viet Nam", fontsize=9, weight="bold")
     save(fig, "Figure1_legal_allocation_map")
 
 
@@ -80,7 +100,7 @@ def make_framework() -> None:
     boxes = [
         (0.2, "1  LEGAL MANDATE", "Who has authority?\nLaw and functions", "Observed", "#dcebf5", "#1d4f70"),
         (3.62, "2  EXPOSURE", "What is assigned?\nPeople, area, objects", "Estimated", "#dbeee9", "#16675a"),
-        (7.04, "3  CAPACITY", "Can it act?\nStaff, records, routines", "Not observed here", "#f5e7d9", "#8d4d1a"),
+        (7.04, "3  CAPACITY", "Can it act?\nStaff, records, routines", "Plans, not outcomes", "#f5e7d9", "#8d4d1a"),
     ]
     for x, head, body, status, fill, edge in boxes:
         ax.add_patch(FancyBboxPatch((x, 1.0), 3.15, 2.05, boxstyle="round,pad=.12,rounding_size=.08",
@@ -161,12 +181,13 @@ if __name__ == "__main__":
     parser.add_argument("--osm-counts", type=Path, required=True)
     parser.add_argument("--results-json", type=Path, required=True)
     parser.add_argument("--ward-geojson", type=Path, help="Optional former-ward boundaries for Figure 1")
+    parser.add_argument("--locator-geojson", type=Path, help="Optional Viet Nam outline for Figure 1 locator inset")
     parser.add_argument("--output-dir", type=Path, default=Path("outputs"))
     args = parser.parse_args()
     FIG = args.output_dir
     FIG.mkdir(parents=True, exist_ok=True)
     if args.ward_geojson:
-        make_map(args.ward_geojson)
+        make_map(args.ward_geojson, args.locator_geojson)
     make_framework()
     make_intervals(args.results_json)
     make_osm_quality(args.wards_before, args.osm_counts)

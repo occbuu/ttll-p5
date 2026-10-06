@@ -9,6 +9,7 @@ forbidden_suffixes = {'.docx', '.pdf', '.tex', '.xlsx', '.xls', '.csv', '.gpkg',
 allowed_csv = {
     'data/table13b_wards_before.csv': {'Ward', 'Pop_2025', 'area_km2'},
     'data/osm_ward_year_counts.csv': {'date', 'year', 'snapshot', 'ward', 'metric', 'value'},
+    'data/successor_proposal_2025.csv': {'ward', 'area_km2', 'proposal_population', 'proposed_staff'},
 }
 listed = subprocess.check_output(['git', 'ls-files', '--cached', '--others', '--exclude-standard', '-z'], cwd=ROOT)
 paths = [ROOT / p.decode('utf-8') for p in listed.split(b'\0') if p]
@@ -34,4 +35,4 @@ for path in paths:
             violations.append(f'{path.relative_to(ROOT)}: saved outputs')
 if violations:
     raise SystemExit(f'BLOCKED: restricted or manuscript files: {violations}')
-print('PASS: only the two approved aggregate CSVs; no restricted data, generated outputs or manuscript files.')
+print('PASS: only the three approved ward aggregate CSVs; no restricted data, generated outputs or manuscript files.')
