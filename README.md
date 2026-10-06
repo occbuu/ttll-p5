@@ -13,7 +13,7 @@ The three study aggregate tables are in `data/`. They contain ward totals, with 
 | Argument | Columns | Meaning |
 | --- | --- | --- |
 | `--wards-before` | `Ward,Pop_2025,area_km2` | One row for each of 34 former wards; modelled 2025 population and area in km² |
-| `--osm-counts` | `date,ward,metric,value` | Historical OSM ward-category totals; `date` in ISO format; absent ward-category rows are treated as zero |
+| `--osm-counts` | `date,year,snapshot,ward,metric,value` | Historical OSM ward-category totals; `date` in ISO format; absent ward-category rows are treated as zero |
 | `successor_proposal_2025.csv` | `ward,area_km2,proposal_population,proposed_staff,city_reassigned,inherited_officials,inherited_civil_servants` | Official proposal population/area and reported staff plan with source components; positions are not observed |
 
 The OSM metrics used are `shop`, `food_outlet`, `religious_premises`, `education`, `health`, `public_space`, `marketplace`, and `road_km`. The latest `date` supplies the manuscript's stock comparison. Figure 1 additionally needs a 34-feature former-ward GeoJSON with a `Ten` name field and a valid CRS; it is optional because the ward geometry is not redistributed into invented successor polygons.
